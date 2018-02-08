@@ -5,8 +5,10 @@
  */
 
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using System.Security.Claims;
 
 namespace Mvc.Client
 {
@@ -42,6 +44,14 @@ namespace Mvc.Client
                 options.ClientId = "49e302895d8b09ea5656";
                 options.ClientSecret = "98f1bf028608901e9df91d64ee61536fe562064b";
                 options.Scope.Add("user:email");
+            })
+            
+            .AddWPOAuthServer(options => 
+            {
+                options.ClientId = "cihumNhHnACjSLchcxIoeFMLTZuD9ZEmhWQEK8l7";
+                options.ClientSecret = "IYrBJDSWaBlpg7ba6FNgFsDXotB8BXgkVIWFlOBw";
+                options.BaseDomain = "https://cc-api.com/";
+                //options.ClaimActions.Add(new JsonKeyClaimAction(ClaimTypes.Role, "role", "roles"));
             });
 
             services.AddMvc();
